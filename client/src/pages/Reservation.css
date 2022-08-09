@@ -16,3 +16,15 @@
   max-height: 70vh;
   overflow: scroll;
 }
+
+.item-tile {
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  border-radius: 10px;
+}

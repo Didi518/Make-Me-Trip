@@ -5,6 +5,7 @@ export const appApi = createApi({
   reducerPath: 'appApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080' }),
   endpoints: (builder) => ({
+    // inscription user
     signup: builder.mutation({
       query: (user) => ({
         url: '/utilisateurs/inscription',
@@ -12,6 +13,7 @@ export const appApi = createApi({
         body: user,
       }),
     }),
+    // connexion user
     login: builder.mutation({
       query: (user) => ({
         url: '/utilisateurs/connexion',
@@ -19,7 +21,7 @@ export const appApi = createApi({
         body: user,
       }),
     }),
-    // création de produit
+    // création de nouvel article en vente
     createProduct: builder.mutation({
       query: (product) => ({
         url: '/articles',
@@ -40,7 +42,7 @@ export const appApi = createApi({
       query: (body) => ({
         url: '/articles/supprimer-reservations',
         body,
-        method: 'DELETE',
+        method: 'POST',
       }),
     }),
     // augmenter la quantité des articles réservés

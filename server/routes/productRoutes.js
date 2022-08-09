@@ -23,6 +23,6 @@ router.get('/categorie/:category', productsByCategory);
 router.post('/ajouter-reservations', addToCart);
 router.post('/augmenter-reservations', increaseCart);
 router.post('/diminuer-reservations', decreaseCart);
-router.delete('/supprimer-reservations', removeFromCart);
+router.post('/supprimer-reservations', removeFromCart);
 
 export default router;
