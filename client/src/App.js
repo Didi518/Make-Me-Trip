@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux';
 import NouvelArticle from './pages/NouvelArticle';
 import Article from './pages/Article';
 import Categorie from './pages/Categorie';
+import ScrollToTop from './components/ScrollToTop';
+import Reservation from './pages/Reservation';
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -16,6 +18,7 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter>
+        <ScrollToTop />
         <Navigation />
         <Routes>
           <Route index element={<Accueil />} />
@@ -23,6 +26,11 @@ function App() {
             <>
               <Route path='/connexion' element={<Connexion />} />
               <Route path='/inscription' element={<Inscription />} />
+            </>
+          )}
+          {user && (
+            <>
+              <Route path='/reservation' element={<Reservation />} />
             </>
           )}
           <Route path='/article/:id' element={<Article />} />

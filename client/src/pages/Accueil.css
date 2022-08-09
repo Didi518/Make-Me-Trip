@@ -13,6 +13,7 @@
   transition: all 0.3s;
   margin-top: 30px;
   margin-bottom: 30px;
+  border-radius: 10px;
 }
 
 .home-banner {

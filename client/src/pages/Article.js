@@ -17,12 +17,15 @@ import Loading from '../components/Loading';
 import SimilarProduct from '../components/SimilarProduct';
 import './Article.css';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useAddToCartMutation } from '../services/appApi';
+import ToastMessage from '../components/ToastMessage';
 
 function Article() {
   const { id } = useParams();
   const user = useSelector((state) => state.user);
   const [product, setProduct] = useState(null);
   const [similar, setSimilar] = useState(null);
+  const [addToCart, { isSuccess }] = useAddToCartMutation();
 
   const handleDragStart = (e) => e.preventDefault();
 
@@ -91,13 +94,32 @@ function Article() {
                 <option value='4'>4</option>
                 <option value='5'>5</option>
               </Form.Select>
-              <Button size='lg'>Réserver</Button>
+              <Button
+                size='lg'
+                onClick={() =>
+                  addToCart({
+                    userId: user._id,
+                    productId: id,
+                    price: product.price,
+                    image: product.pictures[0].url,
+                  })
+                }
+              >
+                Réserver
+              </Button>
             </ButtonGroup>
           )}
           {user && user.isAdmin && (
             <LinkContainer to={`/article/${product._id}/edit`}>
               <Button size='lg'>Éditer l'article</Button>
             </LinkContainer>
+          )}
+          {isSuccess && (
+            <ToastMessage
+              bg='info'
+              title='Ajouté aux réservations'
+              body={`${product.name} est bien réservé`}
+            />
           )}
         </Col>
       </Row>

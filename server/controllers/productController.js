@@ -99,11 +99,79 @@ export const productsByCategory = async (req, res) => {
   }
 };
 
-export default {
-  getProducts,
-  newProduct,
-  editProduct,
-  deleteProduct,
-  findProduct,
-  productsByCategory,
+// routes des réservations
+
+export const addToCart = async (req, res) => {
+  const { userId, productId, price } = req.body;
+  try {
+    const user = await User.findById(userId);
+    const userCart = user.cart;
+    if (user.cart[productId]) {
+      userCart[productId] += 1;
+    } else {
+      userCart[productId] = 1;
+    }
+    userCart.count += 1;
+    userCart.total = Number(userCart.total) + Number(price);
+    user.cart = userCart;
+    user.markModified('cart');
+    await user.save();
+    res.status(200).json(user);
+  } catch (e) {
+    res.status(400).send(e.message);
+    console.log(e.message);
+  }
+};
+
+// supprimer des réservations
+
+export const increaseCart = async (req, res) => {
+  const { userId, productId, price } = req.body;
+  try {
+    const user = await User.findById(userId);
+    const userCart = user.cart;
+    userCart.total += Number(price);
+    userCart.count += 1;
+    userCart[productId] += 1;
+    user.cart = userCart;
+    user.markModified('cart');
+    await user.save();
+    res.status(200).json(user);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
+};
+
+export const decreaseCart = async (req, res) => {
+  const { userId, productId, price } = req.body;
+  try {
+    const user = await User.findById(userId);
+    const userCart = user.cart;
+    userCart.total -= Number(price);
+    userCart.count -= 1;
+    userCart[productId] -= 1;
+    user.cart = userCart;
+    user.markModified('cart');
+    await user.save();
+    res.status(200).json(user);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
+};
+
+export const removeFromCart = async (req, res) => {
+  const { userId, productId, price } = req.body;
+  try {
+    const user = await User.findById(userId);
+    const userCart = user.cart;
+    userCart.total -= Number(userCart[productId]) * Number(price);
+    userCart.count -= userCart[productId];
+    delete userCart[productId];
+    user.cart = userCart;
+    user.markModified('cart');
+    await user.save();
+    res.status(200).json(user);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 };
