@@ -27,4 +27,9 @@
   color: white;
   font-size: 20px;
   border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.item-tile:hover {
+  transform: scale(1.05);
 }

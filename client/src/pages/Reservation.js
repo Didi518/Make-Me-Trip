@@ -1,12 +1,19 @@
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
 import { Alert, Col, Container, Row, Table } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import CheckoutForm from '../components/CheckoutForm';
 import {
   useDecreaseCartProductMutation,
   useIncreaseCartProductMutation,
   useRemoveFromCartMutation,
 } from '../services/appApi';
 import './Reservation.css';
+
+const stripePromise = loadStripe(
+  'pk_test_51LHDsbKXldPn3Cphk2aEaRLOiwKPfOhV2a19TLN3gqFgSbbtGvT09VPjPmDAp66YUYuONXVLeBUWdYL7HFbimWw600MwgkRDei'
+);
 
 function Reservation() {
   const user = useSelector((state) => state.user);
@@ -27,13 +34,15 @@ function Reservation() {
     <Container style={{ minHeight: '95vh' }} className='cart-container'>
       <Row>
         <Col md={7}>
-          <h1 className='pt-2 h3'>Mes Réservations</h1>
+          <h1 className='pt-2 h3'>Vos coordonnées</h1>
           {cart.length === 0 ? (
             <Alert variant='info'>
               Aucune réservation en cours. Recherchez votre future destination.
             </Alert>
           ) : (
-            <div></div>
+            <Elements stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
           )}
         </Col>
         <Col md={5}>
@@ -72,16 +81,16 @@ function Reservation() {
                           ></i>
                         )}
                         <div
-                          style={{
-                            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), ${item.pictures[0].url}`,
-                          }}
                           className='item-tile'
+                          style={{
+                            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item.pictures[0].url})`,
+                          }}
                         >
                           {item.name}
                         </div>
                       </td>
-                      <td>{item.price}€</td>
-                      <td>
+                      <td className='details'>{item.price}€</td>
+                      <td className='details'>
                         <span className='quantity-indicator'>
                           <i
                             className='fa fa-minus-circle'
@@ -106,7 +115,9 @@ function Reservation() {
                           ></i>
                         </span>
                       </td>
-                      <td>{item.price * user.cart[item._id]}</td>
+                      <td className='details'>
+                        {item.price * user.cart[item._id]}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
