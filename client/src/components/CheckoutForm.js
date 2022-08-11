@@ -51,6 +51,7 @@ const CheckoutForm = () => {
         mail,
         address,
         zipCode,
+        city,
         country,
       }).then((res) => {
         if (!isLoading && !isError) {

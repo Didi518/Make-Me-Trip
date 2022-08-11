@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Container, Nav, Row, Tab } from 'react-bootstrap';
 import axios from '../axios';
+import AdminOrders from '../components/AdminOrders';
 import AdminProducts from '../components/AdminProducts';
 import './Admin.css';
 
@@ -23,8 +24,13 @@ function Admin() {
             </Nav>
           </Col>
           <Col sm={9}>
-            <Tab.Content eventKey="products">
+            <Tab.Content>
+              <Tab.Pane eventKey='products'>
                 <AdminProducts />
+              </Tab.Pane>
+              <Tab.Pane eventKey='orders'>
+                <AdminOrders />
+              </Tab.Pane>
             </Tab.Content>
           </Col>
         </Row>
