@@ -11,11 +11,14 @@ const CheckoutForm = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [alertMessage, setAlertMessage] = useState('');
-  const [createOrder, { isLoading, isError }] = useCreateOrderMutation();
+  const [createOrder, { isLoading, isError, isSuccess }] =
+    useCreateOrderMutation();
   const [country, setCountry] = useState('');
   const [address, setAddress] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [city, setCity] = useState('');
+  const [fullName, setFullName] = useState(user.name);
+  const [mail, setMail] = useState(user.email);
   const [paying, setPaying] = useState(false);
 
   async function handlePay(e) {
@@ -30,7 +33,7 @@ const CheckoutForm = () => {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ',
         },
-        body: JSON.stringify({ amount: user.cart.total }),
+        body: JSON.stringify({ amount: user.cart.total * 100 }),
       }
     ).then((res) => res.json());
     const { paymentIntent } = await stripe.confirmCardPayment(client_secret, {
@@ -41,16 +44,22 @@ const CheckoutForm = () => {
     setPaying(false);
 
     if (paymentIntent) {
-      createOrder({ userId: user._id, cart: user.cart, address, country }).then(
-        (res) => {
-          if (!isLoading && !isError) {
-            setAlertMessage(`Paiement ${paymentIntent.status}`);
-            setTimeout(() => {
-              navigate('/commandes');
-            }, 3000);
-          }
+      createOrder({
+        userId: user._id,
+        cart: user.cart,
+        fullName,
+        mail,
+        address,
+        zipCode,
+        country,
+      }).then((res) => {
+        if (!isLoading && !isError) {
+          setAlertMessage(`Paiement ${paymentIntent.status}`);
+          setTimeout(() => {
+            navigate('/commandes');
+          }, 3000);
         }
-      );
+      });
     }
   }
 
@@ -63,10 +72,11 @@ const CheckoutForm = () => {
             <Form.Group className='mb-3'>
               <Form.Label>Nom complet</Form.Label>
               <Form.Control
+                onChange={(e) => setFullName(e.target.value)}
                 type='text'
                 placeholder='Nom complet'
-                value={user.name}
-                disabled
+                value={fullName}
+                required
               />
             </Form.Group>
           </Col>
@@ -74,10 +84,11 @@ const CheckoutForm = () => {
             <Form.Group className='mb-3'>
               <Form.Label>E-mail</Form.Label>
               <Form.Control
+                onChange={(e) => setMail(e.target.value)}
                 type='email'
                 placeholder='E-mail'
-                value={user.email}
-                disabled
+                value={mail}
+                required
               />
             </Form.Group>
           </Col>
@@ -91,6 +102,7 @@ const CheckoutForm = () => {
                 type='text'
                 placeholder='Adresse'
                 value={address}
+                required
               />
             </Form.Group>
           </Col>
@@ -102,10 +114,11 @@ const CheckoutForm = () => {
                 type='text'
                 placeholder='Code postal'
                 value={zipCode}
+                required
               />
             </Form.Group>
           </Col>
-          <Col md={7}>
+          <Col md={5}>
             <Form.Group className='mb-3'>
               <Form.Label>Ville</Form.Label>
               <Form.Control
@@ -113,10 +126,11 @@ const CheckoutForm = () => {
                 type='text'
                 placeholder='Ville'
                 value={city}
+                required
               />
             </Form.Group>
           </Col>
-          <Col md={5}>
+          <Col md={7}>
             <Form.Group className='mb-3'>
               <Form.Label>Pays</Form.Label>
               <Form.Control
@@ -124,6 +138,7 @@ const CheckoutForm = () => {
                 type='text'
                 placeholder='Pays'
                 value={country}
+                required
               />
             </Form.Group>
           </Col>
@@ -133,7 +148,7 @@ const CheckoutForm = () => {
         <Button
           className='mt-3'
           type='submit'
-          disabled={user.cart.count === 0 || paying}
+          disabled={user.cart.count === 0 || paying || isSuccess}
         >
           {paying ? 'En cours...' : 'Valider'}
         </Button>

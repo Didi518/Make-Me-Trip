@@ -8,6 +8,7 @@ import Stripe from 'stripe';
 import userRoutes from './routes/userRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import imageRoutes from './routes/imageRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 
 dotenv.config();
 const stripe = new Stripe(process.env.STRIPE_SECRET, {
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use('/utilisateurs', userRoutes);
 app.use('/articles', productRoutes);
 app.use('/images', imageRoutes);
+app.use('/commandes', orderRoutes);
 
 app.post('/valider-paiement', async (req, res) => {
   const { amount } = req.body;

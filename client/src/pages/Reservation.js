@@ -125,6 +125,7 @@ function Reservation() {
               <div>
                 <h3 className='h4 pt-4'>Total : {user.cart.total}€</h3>
               </div>
+              <div className='h4 pt-4'>Date de départ souhaitée :</div>
             </>
           )}
         </Col>
