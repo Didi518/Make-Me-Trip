@@ -3,20 +3,20 @@ import {
   addToCart,
   decreaseCart,
   deleteProduct,
-  editProduct,
   findProduct,
   getProducts,
   increaseCart,
   newProduct,
   productsByCategory,
   removeFromCart,
+  updateProduct,
 } from '../controllers/productController.js';
 
 const router = express.Router();
 
 router.get('/', getProducts);
 router.post('/', newProduct);
-router.patch('/:id', editProduct);
+router.patch('/:id', updateProduct);
 router.delete('/:id', deleteProduct);
 router.get('/:id', findProduct);
 router.get('/categorie/:category', productsByCategory);

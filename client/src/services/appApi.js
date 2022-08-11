@@ -29,6 +29,24 @@ export const appApi = createApi({
         method: 'POST',
       }),
     }),
+    // supprimer un article du site
+    deleteProduct: builder.mutation({
+      query: ({ product_id, user_id }) => ({
+        url: `/articles/${product_id}`,
+        body: {
+          user_id,
+        },
+        method: 'DELETE',
+      }),
+    }),
+    // modifier un article
+    updateProduct: builder.mutation({
+      query: (product) => ({
+        url: `/articles/${product.id}`,
+        body: product,
+        method: 'PATCH',
+      }),
+    }),
     // ajouter aux réservations
     addToCart: builder.mutation({
       query: (cartInfo) => ({
@@ -81,6 +99,8 @@ export const {
   useIncreaseCartProductMutation,
   useDecreaseCartProductMutation,
   useCreateOrderMutation,
+  useDeleteProductMutation,
+  useUpdateProductMutation,
 } = appApi;
 
 export default appApi;

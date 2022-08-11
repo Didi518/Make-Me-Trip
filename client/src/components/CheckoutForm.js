@@ -150,7 +150,7 @@ const CheckoutForm = () => {
           type='submit'
           disabled={user.cart.count === 0 || paying || isSuccess}
         >
-          {paying ? 'En cours...' : 'Valider'}
+          {paying ? 'En cours...' : 'Validée'}
         </Button>
       </Form>
     </Col>

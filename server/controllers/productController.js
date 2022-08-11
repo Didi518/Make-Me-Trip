@@ -34,18 +34,17 @@ export const newProduct = async (req, res) => {
 
 // éditer un produit
 
-export const editProduct = async (req, res) => {
+export const updateProduct = async (req, res) => {
   const { id } = req.params;
   try {
-    const { name, description, price, category, pictures } = req.body;
-    const product = await Product.findByIdAndUpdate(
-      id,
+    const { name, description, price, category, images: pictures } = req.body;
+    const product = await Product.findByIdAndUpdate(id, {
       name,
       description,
       price,
       category,
-      pictures
-    );
+      pictures,
+    });
     const products = await Product.find();
     res.status(200).json(products);
   } catch (e) {

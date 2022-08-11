@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import { useCreateProductMutation } from '../services/appApi';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useUpdateProductMutation } from '../services/appApi';
 import axios from '../axios';
 import './NouvelArticle.css';
 
-const NouvelArticle = () => {
+const ModifArticle = () => {
+  const { id } = useParams();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
@@ -13,8 +14,22 @@ const NouvelArticle = () => {
   const [images, setImages] = useState([]);
   const [imgToRemove, setImgToRemove] = useState(null);
   const navigate = useNavigate();
-  const [createProduct, { isError, error, isLoading, isSuccess }] =
-    useCreateProductMutation();
+  const [updateProduct, { isError, error, isLoading, isSuccess }] =
+    useUpdateProductMutation();
+
+  useEffect(() => {
+    axios
+      .get('/articles/' + id)
+      .then(({ data }) => {
+        const product = data.product;
+        setName(product.name);
+        setDescription(product.description);
+        setPrice(product.price);
+        setCategory(product.category);
+        setImages(product.pictures);
+      })
+      .catch((e) => console.log(e));
+  }, [id]);
 
   function handleRemoveImg(imgObj) {
     setImgToRemove(imgObj.public_id);
@@ -32,18 +47,16 @@ const NouvelArticle = () => {
   function handleSubmit(e) {
     e.preventDefault();
     if (!name || !description || !price || !category || !images.length) {
-      return alert('Merci de remplir tous les champs');
+        return alert("Merci de renseigner tous les champs");
     }
-    createProduct({ name, description, price, category, images }).then(
-      ({ data }) => {
+    updateProduct({ id, name, description, price, category, images }).then(({ data }) => {
         if (data.length > 0) {
-          setTimeout(() => {
-            navigate('/');
-          }, 1500);
+            setTimeout(() => {
+                navigate("/");
+            }, 1500);
         }
-      }
-    );
-  }
+    });
+}
 
   function showWidget() {
     const widget = window.cloudinary.createUploadWidget(
@@ -68,8 +81,8 @@ const NouvelArticle = () => {
       <Row>
         <Col md={6} className='new-product__form--container'>
           <Form style={{ width: '100%' }} onSubmit={handleSubmit}>
-            <h1 className='mt-4'>Ajouter un article</h1>
-            {isSuccess && <Alert variant='success'>Article ajouté</Alert>}
+            <h1 className='mt-4'>Modifier un article</h1>
+            {isSuccess && <Alert variant='success'>Article modifié</Alert>}
             {isError && <Alert variant='danger'>{error.data}</Alert>}
             <Form.Group className='mb-3'>
               <Form.Label>Nom</Form.Label>
@@ -107,7 +120,7 @@ const NouvelArticle = () => {
               onChange={(e) => setCategory(e.target.value)}
             >
               <Form.Label>Catégorie</Form.Label>
-              <Form.Select>
+              <Form.Select value={category}>
                 <option disabled selected>
                   -- Choisir une Catégorie --
                 </option>
@@ -137,7 +150,7 @@ const NouvelArticle = () => {
             </Form.Group>
             <Form.Group>
               <Button type='submit' disabled={isLoading || isSuccess}>
-                Ajouter
+                Modifier
               </Button>
             </Form.Group>
           </Form>
@@ -148,4 +161,4 @@ const NouvelArticle = () => {
   );
 };
 
-export default NouvelArticle;
+export default ModifArticle;

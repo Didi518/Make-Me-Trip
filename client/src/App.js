@@ -12,6 +12,8 @@ import Categorie from './pages/Categorie';
 import ScrollToTop from './components/ScrollToTop';
 import Reservation from './pages/Reservation';
 import Commandes from './pages/Commandes';
+import Admin from './pages/Admin';
+import ModifArticle from './pages/Modif';
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -33,6 +35,12 @@ function App() {
             <>
               <Route path='/reservation' element={<Reservation />} />
               <Route path='/commandes' element={<Commandes />} />
+            </>
+          )}
+          {user && user.isAdmin && (
+            <>
+              <Route path='/admin' element={<Admin />} />
+              <Route path='/article/:id/edit' element={<ModifArticle />} />
             </>
           )}
           <Route path='/article/:id' element={<Article />} />
