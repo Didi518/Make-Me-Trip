@@ -2,10 +2,20 @@ import Order from '../models/Order.js';
 import User from '../models/User.js';
 
 export const newOrder = async (req, res) => {
-  const { userId, cart, fullName, mail, address, zipCode, city, country } =
-    req.body;
+  const {
+    userId,
+    cart,
+    fullName,
+    mail,
+    address,
+    zipCode,
+    city,
+    country,
+    dates,
+  } = req.body;
   try {
     const user = await User.findById(userId);
+    console.log(dates);
     const order = await Order.create({
       owner: user._id,
       products: cart,
@@ -15,6 +25,7 @@ export const newOrder = async (req, res) => {
       zipCode,
       city,
       country,
+      dates,
     });
     order.count = cart.count;
     order.total = cart.total;
@@ -43,7 +54,7 @@ export const validOrder = async (req, res) => {
   const { ownerId } = req.body;
   const { id } = req.params;
   try {
-    const user = await User.findById(ownerId);
+    await User.findById(ownerId);
     await Order.findByIdAndUpdate(id, { status: 'validée' });
     const orders = await Order.find().populate('owner', ['mail', 'fullName']);
     res.status(200).json(orders);

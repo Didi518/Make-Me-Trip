@@ -17,7 +17,7 @@ function AdminOrders() {
     axios
       .patch(`/commandes/${orderId}/valide`, { ownerId })
       .then(({ data }) => {
-        setOrders(data).catch((e) => console.log(e));
+        setOrders(data).catch((err) => console.log(err.response));
       });
   }
   function showOrder(productsObj) {
@@ -58,17 +58,17 @@ function AdminOrders() {
       <Table responsive striped bordered hover>
         <thead>
           <tr>
-            <th>#</th>
+            <th>Numéro de réservation</th>
             <th>Nom du client</th>
             <th>Items</th>
             <th>Total</th>
-            <th>Numéro de réservation</th>
             <th>Adresse</th>
+            <th>Statut</th>
           </tr>
         </thead>
         <tbody>
           {orders.map((order) => (
-            <tr>
+            <tr key={order._id}>
               <td>{order._id}</td>
               <td>{order.fullName}</td>
               <td>{order.count}</td>
@@ -105,13 +105,16 @@ function AdminOrders() {
           <Modal.Title>Détails</Modal.Title>
         </Modal.Header>
         {orderToShow.map((order) => (
-          <div className='order-details__container d-flex justify-content-around py-2'>
+          <div
+            key={order._id}
+            className='order-details__container d-flex justify-content-around py-2'
+          >
             <img
               src={order.pictures[0].url}
               style={{ maxWidth: 100, height: 100, objectFit: 'cover' }}
             />
             <p>
-              <span>{order.count} x </span> {order.name}
+              <span>{order.count} x </span> {order.name} x {order.dates}
             </p>
             <p>Prix: {Number(order.price) * order.count}€</p>
           </div>

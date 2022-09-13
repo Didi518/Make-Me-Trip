@@ -31,7 +31,7 @@ function AdminProducts() {
       </thead>
       <tbody>
         {products.map((product) => (
-          <tr>
+          <tr key={product.name}>
             <td>
               <img
                 src={product.pictures[0].url}

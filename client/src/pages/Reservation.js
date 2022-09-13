@@ -48,7 +48,7 @@ function Reservation() {
         <Col md={5}>
           {cart.length > 0 && (
             <>
-              <Table responsive='sm' className='cart-table'>
+              <Table responsive='sm' className='cart-table' key={cart.total}>
                 <thead>
                   <tr>
                     <th>&nbsp;</th>
@@ -61,7 +61,7 @@ function Reservation() {
                 <tbody>
                   {/* Affichage des réservations */}
                   {cart.map((item) => (
-                    <tr>
+                    <tr key={item.name}>
                       <td>&nbsp;</td>
                       <td>
                         {!isLoading && (
@@ -125,7 +125,6 @@ function Reservation() {
               <div>
                 <h3 className='h4 pt-4'>Total : {user.cart.total}€</h3>
               </div>
-              <div className='h4 pt-4'>Date de départ souhaitée :</div>
             </>
           )}
         </Col>

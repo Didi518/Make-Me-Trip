@@ -3,7 +3,7 @@ import Order from '../models/Order.js';
 
 // inscription
 
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
   const { name, email, password } = req.body;
 
   try {

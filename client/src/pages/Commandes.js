@@ -50,7 +50,7 @@ function Commandes() {
         </thead>
         <tbody>
           {orders.map((order) => (
-            <tr>
+            <tr key={order._id}>
               <td>{order.fullName}</td>
               <td>
                 <Badge

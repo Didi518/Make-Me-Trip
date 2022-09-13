@@ -18,7 +18,7 @@ export const getProducts = async (req, res) => {
 export const newProduct = async (req, res) => {
   try {
     const { name, description, price, category, images: pictures } = req.body;
-    const product = await Product.create({
+    await Product.create({
       name,
       description,
       price,
@@ -38,7 +38,7 @@ export const updateProduct = async (req, res) => {
   const { id } = req.params;
   try {
     const { name, description, price, category, images: pictures } = req.body;
-    const product = await Product.findByIdAndUpdate(id, {
+    await Product.findByIdAndUpdate(id, {
       name,
       description,
       price,
@@ -98,7 +98,7 @@ export const productsByCategory = async (req, res) => {
   }
 };
 
-// routes des réservations
+// routes panier
 
 export const addToCart = async (req, res) => {
   const { userId, productId, price } = req.body;
@@ -122,7 +122,7 @@ export const addToCart = async (req, res) => {
   }
 };
 
-// supprimer des réservations
+// ajouter aux réservations
 
 export const increaseCart = async (req, res) => {
   const { userId, productId, price } = req.body;

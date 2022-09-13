@@ -4,6 +4,10 @@ import { Alert, Button, Col, Form, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useCreateOrderMutation } from '../services/appApi';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import { DateRange } from 'react-date-range';
+import { format } from 'date-fns';
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -20,6 +24,14 @@ const CheckoutForm = () => {
   const [fullName, setFullName] = useState(user.name);
   const [mail, setMail] = useState(user.email);
   const [paying, setPaying] = useState(false);
+  const [openDate, setOpenDate] = useState(false);
+  const [dates, setDates] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection',
+    },
+  ]);
 
   async function handlePay(e) {
     e.preventDefault();
@@ -53,6 +65,12 @@ const CheckoutForm = () => {
         zipCode,
         city,
         country,
+        dates: [
+          {
+            startDate: dates[0].startDate,
+            endDate: dates[0].endDate,
+          },
+        ],
       }).then((res) => {
         if (!isLoading && !isError) {
           setAlertMessage(`Paiement ${paymentIntent.status}`);
@@ -144,7 +162,25 @@ const CheckoutForm = () => {
             </Form.Group>
           </Col>
         </Row>
-        <label htmlFor='card-element'>Carte</label>
+        <div className='h4 pt-4'>Date de départ souhaitée :</div>
+        <span
+          onClick={() => setOpenDate(!openDate)}
+          style={{ cursor: 'pointer' }}
+        >{`du ${format(dates[0].startDate, 'dd/MM/yyyy')} au ${format(
+          dates[0].endDate,
+          'dd/MM/yyyy'
+        )}`}</span>
+        {openDate && (
+          <DateRange
+            editableDateInputs={true}
+            onChange={(item) => setDates([item.selection])}
+            moveRangeOnFirstSelection={false}
+            ranges={dates}
+            minDate={new Date()}
+          />
+        )}
+        <br />
+        <label htmlFor='card-element'>Paiement</label>
         <CardElement id='card-element' />
         <Button
           className='mt-3'

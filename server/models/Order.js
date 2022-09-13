@@ -24,7 +24,7 @@ const OrderSchema = mongoose.Schema(
     },
     date: {
       type: String,
-      default: new Date().toISOString().split('T')[0],
+      default: new Date().toLocaleDateString(),
     },
     fullName: {
       type: String,
@@ -50,6 +50,16 @@ const OrderSchema = mongoose.Schema(
     country: {
       type: String,
     },
+    dates: [
+      {
+        startDate: {
+          type: String,
+        },
+        endDate: {
+          type: String,
+        },
+      },
+    ],
   },
   { minimize: false }
 );

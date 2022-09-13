@@ -11,10 +11,10 @@ import imageRoutes from './routes/imageRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 
 dotenv.config();
+
 const stripe = new Stripe(process.env.STRIPE_SECRET, {
   apiVersion: '2022-08-01',
 });
-
 const app = express();
 const server = http.createServer(app);
 

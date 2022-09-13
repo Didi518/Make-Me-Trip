@@ -55,10 +55,10 @@ function Navigation() {
                 )}
                 {!user.isAdmin && (
                   <>
-                    <LinkContainer to='/panier'>
+                    <LinkContainer to='/reservation'>
                       <NavDropdown.Item>Mon Panier</NavDropdown.Item>
                     </LinkContainer>
-                    <LinkContainer to='/reservations'>
+                    <LinkContainer to='/commandes'>
                       <NavDropdown.Item>Mes Réservations</NavDropdown.Item>
                     </LinkContainer>
                   </>

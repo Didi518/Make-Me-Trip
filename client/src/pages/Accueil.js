@@ -57,9 +57,10 @@ function Accueil() {
           {categories.map((category) => (
             <LinkContainer
               to={`/categorie/${category.name.toLocaleLowerCase()}`}
+              key={category.name}
             >
               <Col md={4}>
-              <div
+                <div
                   style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${category.img})`,
                     gap: '10px',
