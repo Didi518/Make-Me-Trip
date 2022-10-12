@@ -1,9 +1,15 @@
 import User from '../models/User.js';
-import Order from '../models/Order.js';
+import { body, validationResult } from 'express-validator';
+
+body('email').isEmail(), body('password').isLength({ min: 5 });
 
 // inscription
 
 export const signup = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
   const { name, email, password } = req.body;
 
   try {

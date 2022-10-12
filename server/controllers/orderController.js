@@ -15,7 +15,6 @@ export const newOrder = async (req, res) => {
   } = req.body;
   try {
     const user = await User.findById(userId);
-    console.log(dates);
     const order = await Order.create({
       owner: user._id,
       products: cart,

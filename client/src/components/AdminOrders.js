@@ -111,6 +111,7 @@ function AdminOrders() {
           >
             <img
               src={order.pictures[0].url}
+              alt={order.dates[0]}
               style={{ maxWidth: 100, height: 100, objectFit: 'cover' }}
             />
             <p>

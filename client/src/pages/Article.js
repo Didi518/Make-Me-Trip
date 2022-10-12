@@ -50,6 +50,7 @@ function Article() {
     <img
       className='product__carousel--image'
       src={picture.url}
+      alt={product.name}
       onDragStart={handleDragStart}
     />
   ));

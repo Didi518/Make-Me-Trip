@@ -41,11 +41,11 @@ function App() {
             <>
               <Route path='/admin' element={<Admin />} />
               <Route path='/article/:id/edit' element={<ModifArticle />} />
+              <Route path='/nouvel-article' element={<NouvelArticle />} />
             </>
           )}
           <Route path='/article/:id' element={<Article />} />
           <Route path='/categorie/:category' element={<Categorie />} />
-          <Route path='/nouvel-article' element={<NouvelArticle />} />
           <Route path='*' element={<Accueil />} />
         </Routes>
       </BrowserRouter>

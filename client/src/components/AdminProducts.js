@@ -11,7 +11,7 @@ function AdminProducts() {
 
   // supprimer un produit du site
 
-  const [deleteProduct, { isLoading, isSuccess }] = useDeleteProductMutation();
+  const [deleteProduct, { isLoading }] = useDeleteProductMutation();
 
   function handleDeleteProduct(id) {
     // logique ici
@@ -35,6 +35,7 @@ function AdminProducts() {
             <td>
               <img
                 src={product.pictures[0].url}
+                alt={product.name}
                 className='dashboard-product-preview'
               />
             </td>

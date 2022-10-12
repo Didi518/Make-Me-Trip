@@ -22,7 +22,7 @@ function ClientsAdminPage() {
   }, []);
 
   if (loading) return <Loading />;
-  if (users?.length == 0)
+  if (users?.length === 0)
     return (
       <h2 className='py-2 text-center'>Aucun utilisateur pour le moment</h2>
     );

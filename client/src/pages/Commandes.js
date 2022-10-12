@@ -7,11 +7,8 @@ import Loading from '../components/Loading';
 
 function Commandes() {
   const user = useSelector((state) => state.user);
-  const products = useSelector((state) => state.products);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [orderToShow, setOrderToShow] = useState([]);
-  const [show, setShow] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -25,7 +22,7 @@ function Commandes() {
         setLoading(false);
         console.log(e);
       });
-  }, []);
+  }, [user._id]);
 
   if (loading) {
     return <Loading />;
@@ -44,6 +41,8 @@ function Commandes() {
             <th>Nom du voyageur</th>
             <th>Statut</th>
             <th>Date</th>
+            <th>Du</th>
+            <th>Au</th>
             <th>Total</th>
             <th>Numéro de réservation</th>
           </tr>
@@ -61,6 +60,8 @@ function Commandes() {
                 </Badge>
               </td>
               <td>{order.date}</td>
+              <td>{order.dates[0].startDate}</td>
+              <td>{order.dates[0].endDate}</td>
               <td>{order.total}€</td>
               <td>{order._id}</td>
             </tr>

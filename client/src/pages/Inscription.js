@@ -8,11 +8,14 @@ function Inscription() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [signup, { error, isLoading, isError }] = useSignupMutation();
 
   function handleSignup(e) {
     e.preventDefault();
+    if ( password !== confirmPassword) {
+      return alert('Les mots de passes ne correspondent pas.')
+    }
     signup({ name, email, password });
   }
 
@@ -53,7 +56,7 @@ function Inscription() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
-            {/* <Form.Group>
+            <Form.Group>
               <Form.Label>Confirmer le mot de passe</Form.Label>
               <Form.Control
                 type='password'
@@ -62,7 +65,7 @@ function Inscription() {
                 required
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-            </Form.Group> */}
+            </Form.Group>
             <Form.Group>
               <Button
                 type='submit'

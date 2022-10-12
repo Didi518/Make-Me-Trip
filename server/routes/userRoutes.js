@@ -1,4 +1,5 @@
 import express from 'express';
+import { body } from 'express-validator';
 import {
   getUsers,
   signin,
@@ -10,7 +11,7 @@ const router = express.Router();
 
 // inscription
 
-router.post('/inscription', signup);
+router.post('/inscription', [body('username').trim().escape()], signup);
 
 // connexion
 

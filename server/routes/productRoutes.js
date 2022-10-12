@@ -15,8 +15,12 @@ import {
 const router = express.Router();
 
 router.get('/', getProducts);
-router.post('/', newProduct);
-router.patch('/:id', updateProduct);
+router.post(
+  '/', newProduct
+);
+router.patch(
+  '/:id', updateProduct
+);
 router.delete('/:id', deleteProduct);
 router.get('/:id', findProduct);
 router.get('/categorie/:category', productsByCategory);

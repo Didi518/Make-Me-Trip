@@ -24,9 +24,14 @@ function Navigation() {
           <Nav className='ms-auto'>
             {/* si non connecté */}
             {!user && (
-              <LinkContainer to='/connexion'>
-                <Nav.Link>Connexion</Nav.Link>
-              </LinkContainer>
+              <>
+                <LinkContainer to='/connexion'>
+                  <Nav.Link>Connexion</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to='/inscription'>
+                  <Nav.Link>Inscription</Nav.Link>
+                </LinkContainer>
+              </>
             )}
             {user && !user.isAdmin && (
               <LinkContainer to='/reservation'>

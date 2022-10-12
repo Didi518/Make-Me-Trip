@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col, Container, Nav, Row, Tab } from 'react-bootstrap';
-import axios from '../axios';
 import AdminClients from '../components/AdminClients';
 import AdminOrders from '../components/AdminOrders';
 import AdminProducts from '../components/AdminProducts';

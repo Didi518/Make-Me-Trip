@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import productSlice from './features/productSlice';
-import userSlice from './features/userSlice';
-import appApi from './services/appApi';
+import productSlice from '../features/productSlice';
+import userSlice from '../features/userSlice';
+import appApi from '../services/appApi';
 // sauvegarde&restitution du store
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
