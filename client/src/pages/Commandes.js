@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import './Commandes.css';
 import { Badge, Container, Table } from 'react-bootstrap';
 import Loading from '../components/Loading';
+import moment from 'moment';
+import 'moment/locale/fr';
 
 function Commandes() {
   const user = useSelector((state) => state.user);
@@ -40,7 +42,7 @@ function Commandes() {
           <tr>
             <th>Nom du voyageur</th>
             <th>Statut</th>
-            <th>Date</th>
+            <th>Date de l'achat</th>
             <th>Du</th>
             <th>Au</th>
             <th>Total</th>
@@ -60,8 +62,10 @@ function Commandes() {
                 </Badge>
               </td>
               <td>{order.date}</td>
-              <td>{order.dates[0].startDate}</td>
-              <td>{order.dates[0].endDate}</td>
+              <td>
+                {moment(order.dates[0].startDate).locale('fr').format('L')}
+              </td>
+              <td>{moment(order.dates[0].endDate).locale('fr').format('L')}</td>
               <td>{order.total}€</td>
               <td>{order._id}</td>
             </tr>

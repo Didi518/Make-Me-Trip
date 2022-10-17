@@ -72,6 +72,10 @@ function Article() {
             mouseTracking
             items={images}
             controlsStrategy='alternate'
+            autoPlay={true}
+            alternate
+            autoPlayInterval={5000}
+            infinite
           />
         </Col>
         <Col lg={6} className='pt-4'>

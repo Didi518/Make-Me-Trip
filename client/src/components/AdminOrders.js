@@ -111,11 +111,11 @@ function AdminOrders() {
           >
             <img
               src={order.pictures[0].url}
-              alt={order.dates[0]}
+              alt={order.name}
               style={{ maxWidth: 100, height: 100, objectFit: 'cover' }}
             />
             <p>
-              <span>{order.count} x </span> {order.name} x {order.dates}
+              <span>{order.count} x </span> {order.name}
             </p>
             <p>Prix: {Number(order.price) * order.count}€</p>
           </div>

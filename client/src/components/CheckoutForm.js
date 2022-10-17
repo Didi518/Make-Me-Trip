@@ -29,10 +29,6 @@ const CheckoutForm = () => {
     {
       startDate: new Date(),
       endDate: new Date(),
-      locale: {
-        format: 'DD-MM-YYYY',
-        separator: ' au ',
-      },
       key: 'selection',
     },
   ]);
