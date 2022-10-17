@@ -26,7 +26,7 @@ function Reservation() {
 
   function handleDecrease(product) {
     const quantity = user.cart.count;
-    if (quantity <= 0) return alert('Opération impossible');
+    if (quantity <= 1) return alert('Opération impossible');
     decreaseCart(product);
   }
 
