@@ -1,28 +1,23 @@
 import express from 'express';
 import { body } from 'express-validator';
-import {
-  getUsers,
-  signin,
-  signup,
-  userOrders,
-} from '../controllers/userController.js';
+import userController from '../controllers/userController.js';
 
 const router = express.Router();
 
 // inscription
 
-router.post('/inscription', [body('username').trim().escape()], signup);
+router.route('/inscription').post(userController.signup);
 
 // connexion
 
-router.post('/connexion', signin);
+router.route('/connexion').post(userController.signin);
 
 // récupérer liste des clients
 
-router.get('/', getUsers);
+router.route('/').get(userController.getUsers);
 
 // récupérer les commandes des clients
 
-router.get('/:id/commandes', userOrders);
+router.route('/:id/commandes').get(userController.userOrders);
 
 export default router;

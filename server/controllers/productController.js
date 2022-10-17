@@ -87,10 +87,11 @@ export const productsByCategory = async (req, res) => {
   const { category } = req.params;
   try {
     let products;
+    const sort = { _id: -1 };
     if (category === 'tout') {
-      products = await Product.find().sort([['date', -1]]);
+      products = await Product.find().sort(sort);
     } else {
-      products = await Product.find({ category });
+      products = await Product.find({ category }).sort(sort);
     }
     res.status(200).json(products);
   } catch (e) {
@@ -173,4 +174,17 @@ export const removeFromCart = async (req, res) => {
   } catch (e) {
     res.status(400).send(e.message);
   }
+};
+
+export default {
+  getProducts,
+  newProduct,
+  updateProduct,
+  deleteProduct,
+  findProduct,
+  productsByCategory,
+  addToCart,
+  increaseCart,
+  decreaseCart,
+  removeFromCart,
 };

@@ -61,3 +61,5 @@ export const validOrder = async (req, res) => {
     res.status(400).json(e.message);
   }
 };
+
+export default { newOrder, getOrders, validOrder };

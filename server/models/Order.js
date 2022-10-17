@@ -61,10 +61,16 @@ const OrderSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    dates: {
-      type: Array,
-      required: true,
-    },
+    dates: [
+      {
+        startDate: {
+          type: String,
+        },
+        endDate: {
+          type: String,
+        },
+      },
+    ],
   },
   { minimize: false }
 );

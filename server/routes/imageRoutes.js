@@ -1,8 +1,8 @@
 import express from 'express';
-import { deleteImage } from '../controllers/imagesController.js';
+import imagesController from '../controllers/imagesController.js';
 
 const router = express.Router();
 
-router.delete('/:public_id', deleteImage);
+router.route('/:public_id').delete(imagesController.deleteImage);
 
 export default router;

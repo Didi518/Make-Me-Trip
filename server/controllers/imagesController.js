@@ -18,3 +18,5 @@ export const deleteImage = async (req, res) => {
     res.status(400).send(e.message);
   }
 };
+
+export default { deleteImage };

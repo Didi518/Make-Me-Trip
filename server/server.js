@@ -54,7 +54,6 @@ app.use(
     body('zipcode').trim().escape(),
     body('city').trim().escape(),
     body('country').trim().escape(),
-    body('dates').trim().escape(),
   ],
   orderRoutes
 );

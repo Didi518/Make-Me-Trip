@@ -1,7 +1,4 @@
 import User from '../models/User.js';
-import { body, validationResult } from 'express-validator';
-
-body('email').isEmail(), body('password').isLength({ min: 5 });
 
 // inscription
 
@@ -56,3 +53,5 @@ export const userOrders = async (req, res) => {
     res.status(400).send(e.message);
   }
 };
+
+export default { signup, signin, getUsers, userOrders };
