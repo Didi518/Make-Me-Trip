@@ -50,6 +50,30 @@ const NouvelArticle = () => {
       {
         cloudName: 'dyorb9ngw',
         uploadPreset: 'jluwuira',
+        styles: {
+          palette: {
+            window: '#FFFEFE',
+            sourceBg: '#FFFFFF',
+            windowBorder: '#0194C7',
+            tabIcon: '#0094c7',
+            inactiveTabIcon: '#0194C7',
+            menuIcons: '#0094C7',
+            link: '#0194C7',
+            action: '#8F5DA5',
+            inProgress: '#0194c7',
+            complete: '#0194C7',
+            error: '#c43737',
+            textDark: '#000000',
+            textLight: '#FFFFFF',
+          },
+          fonts: {
+            default: null,
+            "'Poppins', sans-serif": {
+              url: 'https://fonts.googleapis.com/css?family=Poppins',
+              active: true,
+            },
+          },
+        },
       },
       (error, result) => {
         if (!error && result.event === 'success') {
@@ -117,13 +141,13 @@ const NouvelArticle = () => {
               </Form.Select>
             </Form.Group>
             <Form.Group className='mb-3'>
-              <Button type='button' onClick={showWidget}>
+              <Button type='button' className='upload' onClick={showWidget}>
                 Charger des Images
               </Button>
               <div className='images-preview-container'>
                 {images.map((image) => (
                   <div className='image-preview'>
-                    <img src={image.url} alt={image.public_id} />
+                    <img src={image.url} alt='Illustration' />
                     {/* ajout d'une icone de suppression de l'image */}
                     {imgToRemove !== image.public_id && (
                       <i

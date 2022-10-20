@@ -2,11 +2,7 @@ import User from '../models/User.js';
 
 // inscription
 
-export const signup = async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
+const signup = async (req, res, next) => {
   const { name, email, password } = req.body;
 
   try {
@@ -20,7 +16,7 @@ export const signup = async (req, res, next) => {
 
 // connexion
 
-export const signin = async (req, res) => {
+const signin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -33,7 +29,7 @@ export const signin = async (req, res) => {
 
 // récupérer liste des clients
 
-export const getUsers = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
     const users = await User.find({ isAdmin: false }).populate('orders');
     res.json(users);
@@ -44,7 +40,7 @@ export const getUsers = async (req, res) => {
 
 // récupérer les commandes users
 
-export const userOrders = async (req, res) => {
+const userOrders = async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findById(id).populate('orders');

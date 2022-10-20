@@ -1,7 +1,7 @@
 import Order from '../models/Order.js';
 import User from '../models/User.js';
 
-export const newOrder = async (req, res) => {
+const newOrder = async (req, res) => {
   const {
     userId,
     cart,
@@ -39,7 +39,7 @@ export const newOrder = async (req, res) => {
   }
 };
 
-export const getOrders = async (req, res) => {
+const getOrders = async (req, res) => {
   try {
     const orders = await Order.find().populate('owner', ['mail', 'fullName']);
     res.status(200).json(orders);
@@ -49,7 +49,7 @@ export const getOrders = async (req, res) => {
 };
 
 // commandes validées
-export const validOrder = async (req, res) => {
+const validOrder = async (req, res) => {
   const { ownerId } = req.body;
   const { id } = req.params;
   try {

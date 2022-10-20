@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.route('/').post(orderController.newOrder).get(orderController.getOrders);
 
-router.route('/:id/valide', orderController.validOrder);
+router.route('/:id/valide').patch(orderController.validOrder);
 
 export default router;

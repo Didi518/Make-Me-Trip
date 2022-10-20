@@ -23,15 +23,15 @@ function Accueil() {
     <div>
       <img
         className='home-banner'
-        src='https://zupimages.net/up/22/31/k8d5.png'
-        alt='Travel-world'
+        src='https://zupimages.net/up/22/42/geiz.png'
+        alt='Make Me Trip'
       />
       <div className='featured-products-container container mt-4'>
         <h2>Dernières offres</h2>
         {/* dernières offres ici */}
         <div className='d-flex justify-content-center flex-wrap'>
           {lastProducts.map((product) => (
-            <ProductPreview key={product.name} {...product} />
+            <ProductPreview key={product._id} {...product} />
           ))}
         </div>
         <div>
@@ -49,7 +49,7 @@ function Accueil() {
       </div>
       {/* Bannière promo */}
       <div className='sale__banner--container mt-4'>
-        <img src='https://zupimages.net/up/22/31/o9tl.png' alt='Travel-World' />
+        <img src='https://zupimages.net/up/22/42/dk6n.png' alt='Make Me Trip' />
       </div>
       <div className='recent-products-container container mt-4'>
         <h2>Catégories</h2>
@@ -74,6 +74,9 @@ function Accueil() {
           ))}
         </Row>
       </div>
+      <span className='copyrights'>
+        &copy; Kevin 2022. Tous droits réservés.
+      </span>
     </div>
   );
 }

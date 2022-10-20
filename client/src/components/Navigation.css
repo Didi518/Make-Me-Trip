@@ -1,3 +1,12 @@
+.container {
+  background: rgb(213, 255, 252);
+  background: linear-gradient(
+    90deg,
+    rgba(213, 255, 252, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
 .logout-btn {
   margin: 0 auto;
   display: block !important;

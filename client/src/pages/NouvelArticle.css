@@ -35,5 +35,11 @@
   background-image: url(https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&w=400);
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  height: 90vh;
+}
+
+@media screen and (max-width: 767px) {
+  .new-product__image--container {
+    display: none;
+  }
 }

@@ -3,7 +3,7 @@ import User from '../models/User.js';
 
 // obtenir les articles en ligne
 
-export const getProducts = async (req, res) => {
+const getProducts = async (req, res) => {
   try {
     const sort = { _id: -1 };
     const products = await Product.find().sort(sort);
@@ -15,7 +15,7 @@ export const getProducts = async (req, res) => {
 
 // créer un nouveau produit
 
-export const newProduct = async (req, res) => {
+const newProduct = async (req, res) => {
   try {
     const { name, description, price, category, images: pictures } = req.body;
     await Product.create({
@@ -34,7 +34,7 @@ export const newProduct = async (req, res) => {
 
 // éditer un produit
 
-export const updateProduct = async (req, res) => {
+const updateProduct = async (req, res) => {
   const { id } = req.params;
   try {
     const { name, description, price, category, images: pictures } = req.body;
@@ -54,7 +54,7 @@ export const updateProduct = async (req, res) => {
 
 // suppression d'un produit
 
-export const deleteProduct = async (req, res) => {
+const deleteProduct = async (req, res) => {
   const { id } = req.params;
   const { user_id } = req.body;
   try {
@@ -70,7 +70,7 @@ export const deleteProduct = async (req, res) => {
 
 // récupérer un produit par son id ou sa catégorie
 
-export const findProduct = async (req, res) => {
+const findProduct = async (req, res) => {
   const { id } = req.params;
   try {
     const product = await Product.findById(id);
@@ -83,7 +83,7 @@ export const findProduct = async (req, res) => {
 
 // trier les produits par catégorie
 
-export const productsByCategory = async (req, res) => {
+const productsByCategory = async (req, res) => {
   const { category } = req.params;
   try {
     let products;
@@ -101,7 +101,7 @@ export const productsByCategory = async (req, res) => {
 
 // routes panier
 
-export const addToCart = async (req, res) => {
+const addToCart = async (req, res) => {
   const { userId, productId, price } = req.body;
   try {
     const user = await User.findById(userId);
@@ -125,7 +125,7 @@ export const addToCart = async (req, res) => {
 
 // ajouter aux réservations
 
-export const increaseCart = async (req, res) => {
+const increaseCart = async (req, res) => {
   const { userId, productId, price } = req.body;
   try {
     const user = await User.findById(userId);
@@ -142,7 +142,7 @@ export const increaseCart = async (req, res) => {
   }
 };
 
-export const decreaseCart = async (req, res) => {
+const decreaseCart = async (req, res) => {
   const { userId, productId, price } = req.body;
   try {
     const user = await User.findById(userId);
@@ -159,7 +159,7 @@ export const decreaseCart = async (req, res) => {
   }
 };
 
-export const removeFromCart = async (req, res) => {
+const removeFromCart = async (req, res) => {
   const { userId, productId, price } = req.body;
   try {
     const user = await User.findById(userId);

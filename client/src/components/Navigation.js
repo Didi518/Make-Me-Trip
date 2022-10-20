@@ -14,10 +14,10 @@ function Navigation() {
   }
 
   return (
-    <Navbar bg='light' expand='lg'>
+    <Navbar bg='light' expand='lg' className='container'>
       <Container>
         <LinkContainer to='/'>
-          <Navbar.Brand>Travel World</Navbar.Brand>
+          <Navbar.Brand>Make Me Trip</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>

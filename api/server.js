@@ -72,6 +72,6 @@ app.post('/valider-paiement', async (req, res) => {
   }
 });
 
-server.listen(8080, () => {
+server.listen(process.env.PORT, () => {
   console.log(`Le serveur est connecté au port ${process.env.PORT}`);
 });

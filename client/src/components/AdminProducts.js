@@ -20,13 +20,14 @@ function AdminProducts() {
   }
 
   return (
-    <Table striped bordered hover responsive>
+    <Table bordered striped hover responsive>
       <thead>
         <tr>
-          <th></th>
+          <th>Image</th>
           <th>ID de l'article</th>
           <th>Nom de l'article</th>
           <th>Prix de l'article</th>
+          <th className='buttons'>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -41,9 +42,10 @@ function AdminProducts() {
             </td>
             <td>{product._id}</td>
             <td>{product.name}</td>
-            <td>{product.price}</td>
+            <td>{product.price}€</td>
             <td>
               <Button
+                className='btn btn-danger'
                 onClick={() => handleDeleteProduct(product._id, user._id)}
                 disabled={isLoading}
               >
@@ -52,6 +54,7 @@ function AdminProducts() {
               <Link
                 to={`/article/${product._id}/edit`}
                 className='btn btn-warning'
+                disabled={isLoading}
               >
                 Modifier
               </Link>

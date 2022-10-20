@@ -1,15 +1,15 @@
 const categories = [
   {
     name: 'sejour',
-    img: 'https://images.pexels.com/photos/3048211/pexels-photo-3048211.jpeg?auto=compress&cs=tinysrgb&w=400',
+    img: 'https://www.paradise-islandmaldives.com/storage/media/1437/conversions/01Nov18_Paradise_1073-large.jpg',
   },
   {
     name: 'vol',
-    img: 'https://images.pexels.com/photos/6697635/pexels-photo-6697635.jpeg?auto=compress&cs=tinysrgb&w=400',
+    img: 'https://france3-regions.francetvinfo.fr/image/4eycpzmTiKnQp0-pIhrSivWh14Y/600x400/regions/2020/06/09/5edf9245e97fd_gemab19_-_ftv_3-4755708.jpg',
   },
   {
     name: 'loisir',
-    img: 'https://images.pexels.com/photos/3810967/pexels-photo-3810967.jpeg?auto=compress&cs=tinysrgb&w=400',
+    img: 'https://youimg1.tripcdn.com/target/010011200089jjkpl9105.jpg?proc=source%2Ftrip',
   },
 ];
 

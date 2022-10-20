@@ -9,7 +9,6 @@ const OrderSchema = mongoose.Schema(
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: true,
     },
     status: {
       type: String,
@@ -74,6 +73,10 @@ const OrderSchema = mongoose.Schema(
   },
   { minimize: false }
 );
+
+OrderSchema.pre('remove', function (next) {
+  this.model('User').remove({ orders: this._id }, next());
+});
 
 const Order = mongoose.model('Order', OrderSchema);
 

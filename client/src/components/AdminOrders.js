@@ -42,6 +42,7 @@ function AdminOrders() {
       })
       .catch((e) => {
         setLoading(false);
+        console.log(e);
       });
   }, []);
 
@@ -78,12 +79,16 @@ function AdminOrders() {
               </td>
               <td>
                 {order.status === 'en cours' ? (
-                  <Button
-                    size='sm'
-                    onClick={() => markShipped(order._id, order.owner?._id)}
-                  >
-                    Valider
-                  </Button>
+                  <>
+                    <Badge bg='warning' text='dark'>En cours</Badge>
+                    <Button
+                      size='sm'
+                      onClick={() => markShipped(order._id, order.owner?._id)}
+                      className='btn btn-primary'
+                    >
+                      Valider
+                    </Button>
+                  </>
                 ) : (
                   <Badge bg='success'>Validée</Badge>
                 )}

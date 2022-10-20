@@ -29,7 +29,7 @@ label:hover {
   cursor: pointer;
 }
 
-@media screen and (max-width: 756px) {
+@media screen and (max-width: 767px) {
   .login__image--container,
   .signup__image--container {
     display: none;
