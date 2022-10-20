@@ -26,7 +26,7 @@ app.use(express.json());
 console.log(process.env.NODE_ENV);
 
 app.use(
-  '/utilisateurs',
+  '/api/utilisateurs',
   [
     body('name').trim().escape(),
     body('email').trim().escape(),
@@ -35,7 +35,7 @@ app.use(
   userRoutes
 );
 app.use(
-  '/articles',
+  '/api/articles',
   [
     body('name').trim().escape(),
     body('description').trim().escape(),
@@ -46,7 +46,7 @@ app.use(
 );
 app.use('/images', imageRoutes);
 app.use(
-  '/commandes',
+  '/api/commandes',
   [
     body('fullName').trim().escape(),
     body('mail').trim().escape(),
@@ -58,7 +58,7 @@ app.use(
   orderRoutes
 );
 
-app.post('/valider-paiement', async (req, res) => {
+app.post('/api/valider-paiement', async (req, res) => {
   const { amount } = req.body;
   try {
     const paymentIntent = await stripe.paymentIntents.create({

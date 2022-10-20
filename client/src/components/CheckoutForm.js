@@ -38,7 +38,7 @@ const CheckoutForm = () => {
     if (!stripe || !elements || user.cart.count <= 0) return;
     setPaying(true);
     const { client_secret } = await fetch(
-      'http://localhost:8080/valider-paiement',
+      'http://localhost:8080/api/valider-paiement',
       {
         method: 'POST',
         headers: {
