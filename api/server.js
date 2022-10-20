@@ -44,7 +44,7 @@ app.use(
   ],
   productRoutes
 );
-app.use('/images', imageRoutes);
+app.use('/api/images', imageRoutes);
 app.use(
   '/api/commandes',
   [
