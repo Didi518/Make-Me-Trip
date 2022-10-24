@@ -1,10 +1,11 @@
-.container {
+.navContainer {
   background: rgb(213, 255, 252);
   background: linear-gradient(
     90deg,
     rgba(213, 255, 252, 1) 0%,
     rgba(255, 255, 255, 1) 100%
   );
+  border-bottom: 1px solid rgba(220, 220, 220, 1);
 }
 
 .logout-btn {

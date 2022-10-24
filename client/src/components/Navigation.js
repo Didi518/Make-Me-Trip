@@ -14,7 +14,7 @@ function Navigation() {
   }
 
   return (
-    <Navbar bg='light' expand='lg' className='container'>
+    <Navbar bg='light' expand='lg' className='navContainer'>
       <Container>
         <LinkContainer to='/'>
           <Navbar.Brand>Make Me Trip</Navbar.Brand>

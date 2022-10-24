@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import http from 'http';
 import './config/connexion.js';
+import corsOptions from './config/corsOptions.js';
 import dotenv from 'dotenv';
 import Stripe from 'stripe';
 import { body } from 'express-validator';
@@ -19,7 +20,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET, {
 const app = express();
 const server = http.createServer(app);
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

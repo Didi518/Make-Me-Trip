@@ -75,7 +75,7 @@ function Accueil() {
         </Row>
       </div>
       <span className='copyrights'>
-        &copy; Kevin 2022. Tous droits réservés.
+        &copy;Kevin 2022. Tous droits réservés.
       </span>
     </div>
   );

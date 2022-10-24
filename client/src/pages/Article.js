@@ -19,6 +19,7 @@ import './Article.css';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useAddToCartMutation } from '../services/appApi';
 import ToastMessage from '../components/ToastMessage';
+import { Link } from 'react-router-dom';
 
 function Article() {
   const { id } = useParams();
@@ -87,6 +88,14 @@ function Article() {
           <p style={{ textAlign: 'justify' }} className='py-3'>
             <strong>Description : </strong> {product.description}
           </p>
+          {!user && (
+            <>
+              <p>Envie de réserver ? </p>
+              <Link to='/connexion'>Connectez-vous </Link>
+              ou
+              <Link to='/inscription'> Inscrivez-vous!</Link>
+            </>
+          )}
           {user && !user.isAdmin && (
             <ButtonGroup style={{ width: '90%' }}>
               <Form.Select
