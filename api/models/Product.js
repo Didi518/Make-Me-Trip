@@ -23,7 +23,7 @@ const ProductSchema = mongoose.Schema(
       required: true,
     },
   },
-  { minimize: false }
+  { minimize: false, timestamps: true }
 );
 
 const Product = mongoose.model('Product', ProductSchema);

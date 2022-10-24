@@ -71,7 +71,7 @@ const OrderSchema = mongoose.Schema(
       },
     ],
   },
-  { minimize: false }
+  { minimize: false, timestamps: true }
 );
 
 OrderSchema.pre('remove', function (next) {

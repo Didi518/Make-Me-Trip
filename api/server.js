@@ -38,7 +38,6 @@ app.use(
   '/api/articles',
   [
     body('name').trim().escape(),
-    body('description').trim().escape(),
     body('price').trim().escape(),
     body('category').trim().escape(),
   ],
