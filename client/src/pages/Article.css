@@ -8,3 +8,14 @@
 .alice-carousel__next-btn {
   display: none !important;
 }
+
+.a {
+  text-decoration: none !important;
+  color: gray;
+  transition: 0.5s;
+  padding: 10px 15px;
+}
+
+.a:hover {
+  color: gray;
+}

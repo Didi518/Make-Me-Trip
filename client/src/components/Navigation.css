@@ -6,6 +6,7 @@
     rgba(255, 255, 255, 1) 100%
   );
   border-bottom: 1px solid rgba(220, 220, 220, 1);
+  position: relative;
 }
 
 .logout-btn {
@@ -14,7 +15,28 @@
 }
 
 .logo {
-  width: 50px;
+  position: relative;
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  right: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.5s cubic-bezier(0, 0, 0.44, 1.1);
+}
+
+.logo:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 #cartcount {
@@ -35,5 +57,10 @@
 }
 
 .fa-paper-plane {
-  font-size: 20px;
+  font-size: 25px;
+}
+
+.test {
+  justify-content: center;
+  align-items: center;
 }

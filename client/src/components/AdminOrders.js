@@ -65,6 +65,7 @@ function AdminOrders() {
             <th>Total</th>
             <th>Adresse</th>
             <th>Statut</th>
+            <th>Détails</th>
           </tr>
         </thead>
         <tbody>
@@ -80,7 +81,9 @@ function AdminOrders() {
               <td>
                 {order.status === 'en cours' ? (
                   <>
-                    <Badge bg='warning' text='dark'>En cours</Badge>
+                    <Badge bg='warning' text='dark'>
+                      En cours
+                    </Badge>
                     <Button
                       size='sm'
                       onClick={() => markShipped(order._id, order.owner?._id)}
@@ -98,7 +101,7 @@ function AdminOrders() {
                   style={{ cursor: 'pointer' }}
                   onClick={() => showOrder(order.products)}
                 >
-                  Détails <i className='fa fa-eye'></i>
+                  <i className='fa fa-eye'></i>
                 </span>
               </td>
             </tr>

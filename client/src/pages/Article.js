@@ -91,9 +91,14 @@ function Article() {
           {!user && (
             <>
               <p>Envie de réserver ? </p>
-              <Link to='/connexion'>Connectez-vous </Link>
+              <Link className='a logo' to='/connexion'>
+                Connexion{' '}
+              </Link>
               ou
-              <Link to='/inscription'> Inscrivez-vous!</Link>
+              <Link className='a logo' to='/inscription'>
+                {' '}
+                Inscription
+              </Link>
             </>
           )}
           {user && !user.isAdmin && (

@@ -17,26 +17,26 @@ function Navigation() {
     <Navbar bg='light' expand='lg' className='navContainer'>
       <Container>
         <LinkContainer to='/'>
-          <Navbar.Brand>Make Me Trip</Navbar.Brand>
+          <Navbar.Brand className='logo'>Make Me Trip</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='ms-auto'>
+          <Nav className='ms-auto test'>
             {/* si non connecté */}
             {!user && (
               <>
-                <LinkContainer to='/connexion'>
+                <LinkContainer className='logo' to='/connexion'>
                   <Nav.Link>Connexion</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to='/inscription'>
-                  <Nav.Link>Inscription</Nav.Link>
+                  <Nav.Link className='logo'>Inscription</Nav.Link>
                 </LinkContainer>
               </>
             )}
             {user && !user.isAdmin && (
               <LinkContainer to='/reservation'>
                 <Nav.Link>
-                  <i className='fa-regular fa-paper-plane'></i>
+                  <i className='fa-regular fa-paper-plane logo'></i>
                   {user?.cart.count > 0 && (
                     <span className='badge badge-warning' id='cartcount'>
                       {user.cart.count}
@@ -47,7 +47,11 @@ function Navigation() {
             )}
             {/* si connecté */}
             {user && (
-              <NavDropdown title={`${user.name}`} id='basic-nav-dropdown'>
+              <NavDropdown
+                className='logo'
+                title={`${user.name}`}
+                id='basic-nav-dropdown'
+              >
                 {user.isAdmin && (
                   <>
                     <LinkContainer to='/admin'>
