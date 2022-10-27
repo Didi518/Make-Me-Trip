@@ -36,10 +36,6 @@ const UserSchema = mongoose.Schema(
       },
     },
     orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }],
-    createdAt: {
-      type: Date,
-      default: new Date(),
-    },
   },
   {
     minimize: false,
